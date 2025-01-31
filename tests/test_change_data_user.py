@@ -3,7 +3,7 @@ import requests
 import allure
 from urls import Urls, Endpoints
 from conftest import user
-from data import GenerateUser
+from helpers import GenerateUser
 
 class TestChangeDataUser:
     @allure.title('Изменение данных авторизованного пользователя. Позитивный тест')
@@ -25,4 +25,5 @@ class TestChangeDataUser:
 
     def test_change_data_user_without_authorization(self,data):
         response = requests.patch(f'{Urls.MAIN_URL}{Endpoints.CHANGE_USER_DATA}', data=data)
-        assert response.status_code == 401 and response.json()["success"] is False
+        assert response.status_code == 401
+        assert response.json()["message"] == "You should be authorised"

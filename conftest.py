@@ -1,5 +1,5 @@
 import pytest
-from data import GenerateUser
+from helpers import GenerateUser
 import requests
 from urls import Urls, Endpoints
 
